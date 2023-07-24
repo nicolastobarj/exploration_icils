@@ -1,0 +1,221 @@
+---
+title: "Exploración inicial International Computer and Information Literacy Study (ICILS)"
+author: "Nicolás Tobar"
+knitr:
+  opts_chunk: 
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+format: 
+  revealjs:
+    logo: images/banner_nudos.jpg
+    slide-number: true
+    theme: [pp.scss]
+    title-slide-attributes:
+      data-background-image: images/portada.jpg
+      data-background-size: cover  
+editor: visual
+---
+
+# Tarea solicitada
+
+Explorar el cuestionario ICILS 2013 Y 2018 para incluir preguntas sobre alfabetización digital en próximos cuestionarios de formación ciudadana en escolares.
+
+## Contexto
+
+::: incremental
+-   Juan Carlos ingresa al Núcleo de desigualdades y oportunidades digitales para vincular sus preguntas de formación ciudadana con los procesos de integración digital de jóvenes.
+-   IEA desarrolla un estudio a nivel internacional para medir y evaluar la alfabetización computacional y el manejo de información de los estudiantes de 8º grado (13-14 años).
+-   Se decide explorar esta encuesta para ver oportunidades de análisis en el proyecto.
+:::
+
+# Sobre ICILS
+
+## Problema
+
+::: incremental
+-   Digitalización intensiva de la información en un mundo desigual.
+-   Brecha digital de primer orden: Acceso.
+-   Brecha digital de segundo orden: *Digital literacy*.
+-   El rol del sistema educativo para formar ciudadanos inteligentes ante el manejo digital de la información.
+:::
+
+## Computer and information literacy
+
+::: incremental
+1.  **Comprender el computador**: Fundamentos de funcionamiento PC y convenciones de su uso
+2.  **Recopilación de información**: Acceso, evaluación de veracidad y gestión de la información digital.
+3.  **Producir información**: Transformar información recopilada y crear información nueva.
+4.  **Comunicación digital**: Habilidades para compartir información y responsabilidad en lo que se comparte.
+:::
+
+##  {.smaller .scrollable}
+
+**Objetivo general**. Evaluar las capacidades de los estudiantes para usar las TIC, y su relación con los contextos escolares y del hogar que apoyan el aprendizaje escolar.
+
+::: columns
+::: {.column .incremental width="70%"}
+**Objetivos específicos**
+
+-   ¿Qué **variaciones existen en los países y entre países** sobre la alfabetización computacional y manejo de la información de estudiantes escolares?
+-   ¿Qué aspectos de los **colegios y de los sistemas educacionales** están relacionados con el desempeño de los estudiantes en su alfabetización computacional y manejo de la información?
+-   ¿Qué **características del nivel de acceso de los estudiantes, su familiaridad con, y su competencia** usando computadores están relacionados con su desempeño en alfabetización computacional y manejo de la información?
+-   ¿Qué **aspectos personales y ambientes sociales** están relacionadas con la alfabetización computacional y de la información?
+:::
+
+::: {.column .incremental width="30%"}
+**Unidades de análisis**
+
+1.  ![](images/chile.png)
+2.  ![](images/liceo.jpg)
+3.  ![](images/estudiantes.jpg)
+:::
+:::
+
+## Muestra
+
+-   **Población objetivo**: Estudiantes de 8vo básico de contextos rurales y urbanos a nivel internacional[^1]
+-   **Participantes**:
+
+[^1]: *2013: Chile, Dinamarca, Finlandia, Francia, Alemania, Italia, Kazahistán, Corea del sur, Luxemburgo, Portugal, Estados Unidos y Uruguay. Además se agregan localidades como Moscú y Westphalia. / 2018: Australia, Chile, Croacia, República Checa, Dinamarca, Alemania, Hong Kong, Corea del sur, Lithuania, Holanda, Noruega, Polonia, Russia, Eslovaquia, Eslovenia, Suiza, Thailandia y Turquía*
+
+::: panel-tabset
+### 2013
+
+```{r}
+#| echo: false
+#| output-location: slide
+
+pacman::p_load(tidyverse,knitr)
+data.frame(Unidad_de_analisis=c("Establecimientos","Docentes","Estudiantes"),Total=c(3300,60000,35000),Chile=c(174,1800,3189))%>%kable(.,"markdown")
+```
+
+### 2018
+
+```{r}
+#| echo: false
+#| output-location: slide
+data.frame(Unidad_de_analisis=c("Establecimientos","Docentes","Estudiantes"),Total=c(2226,26530,46561),Chile=c(178,1686,3092))%>%kable(.,"markdown")
+```
+:::
+
+## Muestra
+
+-   Diseño complejo de 3 etapas de clusterización
+  1.  Selección de países según análisis comparativo de expertos IEA.
+  2.  Selección aleatoria de escuelas con 8vo básico con probabilidad proporcional al tamaño de estudiantes matriculados en una escuela.
+  3.  Selección aleatoria de estudiantes (20) y profesores dentro del establecimiento (15).
+
+## Instrumento de medición
+
+1.  Test de pensamiento computacional (CT): No aplicado en Chile en 2018.
+
+2.  Cuestionario de alfabetización computacional y de la información (CIL)
+  -   Directivo y coordinador TIC: Preguntas de caracterización de infraestructura TIC en la escuela.
+  -   Docentes: Percepciones, disposiciones y competencias de manejo TIC en aula.
+  -   Estudiantes: CIL personal y caracterización del ambiente familiar.
+
+# Exploración del cuestionario de estudiantes
+
+## Hallazgos cuestionario 2013
+-   El cuestionario de estudiantes y profesores está fuertemente enfocado en rendimiento intraescolar.
+
+---
+
+::: {layout-ncol=2}
+
+![](./images/scholar_question_1.png)
+
+![](./images/scholar_question_2.png)
+
+:::
+
+---
+
+## Hallazgos cuestionario 2013
+:::{.nonincremental}
+-   El cuestionario de estudiantes y profesores está fuertemente enfocado en rendimiento intraescolar.
+:::
+:::{.incremental}
+-   El cuestionario a directores y funcionarios TIC pregunta principalmente por infraestructura computacional de la escuela.
+-   Sin embargo, hay indicadores que guardan relación con acceso y manejo de la información digital fuera de la escuela.
+-   Tres dimensiones interesantes: Uso de la información, Comunicación digital y énfasias de escuelas en TIC.
+-   Preguntas a Estudiantes y profesores.
+:::
+
+## Uso de la información {.smaller}
+
+##### How often do you use a computer for each of the following out-of-school activities?
+
+Unidad de análisis: Estudiantes
+
+Categorías de respuesta: Yes; No
+
+```{r}
+#| output-location: slide
+#| layout-ncol: 1
+
+
+pacman::p_load(googlesheets4)
+               
+gs4_auth(path = "nudos-393317-b5d45882cdbc.json")
+read_sheet("https://docs.google.com/spreadsheets/d/1RhuTnMsS-ab_Kctl0MbUKSBEaDwh0ReWzijxwv7sRLs/edit?usp=sharing")%>%filter(original_scale=="S_USEREC")%>%select(code,original_scale, item)%>%as.data.frame(.)%>%kable("html")
+```
+
+## Uso de la información {.smaller}
+
+##### At school, have you learned how to do the following tasks?
+
+Unidad de análisis: Estudiantes
+
+Categorías de respuesta: Yes; No
+
+```{r}
+#| output-location: slide
+#| layout-ncol: 1
+
+gs4_auth(path = "nudos-393317-b5d45882cdbc.json")
+read_sheet("https://docs.google.com/spreadsheets/d/1RhuTnMsS-ab_Kctl0MbUKSBEaDwh0ReWzijxwv7sRLs/edit?usp=sharing")%>%filter(original_scale=="S_TSKLRN")%>%select(code,original_scale, item)%>%as.data.frame(.)%>%kable("html")
+```
+
+## Comunicación digital {.smaller}
+
+##### How often do you use the Internet outside of school for each of the following activities?
+
+Unidad de análisis: Estudiantes
+
+Categorías de respuesta: Never; Less than once a month; At least once a month but not every week; At least once a week but not every day; Every day
+
+```{r}
+#| output-location: slide
+#| layout-ncol: 1
+
+gs4_auth(path = "nudos-393317-b5d45882cdbc.json")
+read_sheet("https://docs.google.com/spreadsheets/d/1RhuTnMsS-ab_Kctl0MbUKSBEaDwh0ReWzijxwv7sRLs/edit?usp=sharing")%>%filter(original_scale%in%c("S_USECOM","S_USEINF"))%>%select(code,original_scale,item)%>%as.data.frame(.)%>%kable("html")
+```
+
+## Énfasis de educación en information skills {.smaller}
+
+##### In your teaching of the reference class in this school year, how much emphasis have you given to developing the following ICT-based capabilities in your students?
+
+Unidad de análisis: Profesores
+
+Categorías de respuesta: Strong emphasis; Some emphasis; Little emphasis; No emphasis
+
+```{r}
+#| output-location: slide
+#| layout-ncol: 1
+
+gs4_auth(path = "nudos-393317-b5d45882cdbc.json")
+read_sheet("https://docs.google.com/spreadsheets/d/1RhuTnMsS-ab_Kctl0MbUKSBEaDwh0ReWzijxwv7sRLs/edit?usp=sharing")%>%filter(original_scale=="T_EMPH")%>%select(code,original_scale,item)%>%as.data.frame(.)%>%kable("html")
+```
+
+# ICILS 2023 
+![](./images/icils_2023_schedule.png)
+
+## Conclusiones
+-   Doble oportunidad: Trabajar en Chile y a nivel multinivel con datos de 3 olas en un tema abierto.
+-   Trabajo inacabado: Modificaciones en icils 2018, Revisión conceptual más exhaustiva.
+-   EL concepto CIL va quedando en segundo lugar -> Algorithm Literacy.
+-   Pensar como esto se puede conectar con el sedimento de investigaciones en formación ciudadana.

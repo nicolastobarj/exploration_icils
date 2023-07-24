@@ -1,0 +1,18 @@
+"0","#| output-location: slide"
+"0","#| layout-ncol: 1"
+"0",""
+"0",""
+"0","pacman::p_load(googlesheets4,dplyr,knitr)"
+"0",""
+"0","gs4_auth(path = ""nudos-393317-b5d45882cdbc.json"")"
+"0","head(read_sheet(""https://docs.google.com/spreadsheets/d/1RhuTnMsS-ab_Kctl0MbUKSBEaDwh0ReWzijxwv7sRLs/edit?usp=sharing""))%>%filter(.,original_scale==""S_USEREC"")%>%select(.,code,original_scale, item)%>%as.data.frame(.)%>%kable(""html"")"
+"2","[32m✔[39m Reading from [36micils_questionnaire_exploration[39m.
+"
+"2","[32m✔[39m Range [33mHoja 1[39m.
+"
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"
