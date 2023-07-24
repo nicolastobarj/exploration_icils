@@ -14,8 +14,9 @@ format:
     theme: [pp.scss]
     title-slide-attributes:
       data-background-image: images/portada.jpg
-      data-background-size: cover  
+      data-background-size: cover
 editor: visual
+
 ---
 
 # Tarea solicitada
